@@ -1,0 +1,167 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <title>App nghe nhac</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link href="index.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container" >
+            <nav class="navbar">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <div class="search">
+                    <input type="text"  placeholder="Nhap ten ca si, bai hat...">
+                    <button>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="account">
+                    <i class="fa fa-user" aria-hidden="true" onclick="showbox();"></i>
+                    <div class="box">
+                        <span class="box-user"></span>
+                        <ul class="list-item">
+                            <li class="">
+                                <span class="name" href="#">Nguyen Trung Thanh</span>
+                            </li>          
+                            <li class="">
+                                <a href="#">Dang xuat</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-------------------------->
+            <div class="left">
+                <div class="play-box">
+                    <div class="circle">
+                        <img src=""/>
+                    </div>
+                    <div class="song">
+                        <div class="name-song">
+                            <h3></h3>
+                        </div>
+                        <div class="song-control">
+                            <div class="time-line">
+                                <input id="time-line" type="range" min="0" max="100" value="0" />
+                                <audio class="audio" >
+                                    <source src="" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="control">
+                                <button id="pres"><i class="fa fa-step-backward" aria-hidden="true"></i> </button>
+                                <button id="play"> 
+                                    <i class="fa fa-play" aria-hidden="true"></i>
+                                 </button>
+                                <button id="next"> <i class="fa fa-step-forward" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="play-list">
+                    <h2>Play-list</h2>
+                    <div class="list">
+                        
+                    </div>
+                </div>
+            </div>    
+            <!-------------------------->
+            <div class="right">
+                <h2>Danh sách đã nghe</h2>
+                <div class="bxh">
+                    <div class="item">
+                        <div class="circle">
+                            <img src="./img/1234.jpg"/>
+                        </div>
+                        <div class="song">
+                            <h3 class="name">1234</h3>
+                            <h4 class="singer">Chi Dân</h4>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            
+            const $ = document.querySelector.bind(document);
+            const $$ = document.querySelectorAll.bind(document);
+             
+            const app = {
+                currentIndex: 0,
+                songs: [
+                    {
+                    name: 'Như ngày hôm qua',
+                    singer: 'Sơn Tùng MTP',
+                    path: './music/NhuNgayHomQua.mp3',
+                    img: './img/nhungayhomqua.jpg'  
+                    },
+                    {
+                    name: 'Hoa hải đường',
+                    singer: 'Jack',
+                    path: './music/HoaHaiDuong.mp3',
+                    img: './img/jack.jpg'  
+                    },
+                    {
+                    name: 'Cánh hồng phai',
+                    singer: 'Quang Hà, ChuBin',
+                    path: './music/CanhHongPhai(remix).mp3',
+                    img: './img/canh-hong-phai.jpg'  
+                    },
+                    {
+                    name: 'Mình yêu nhau từ bao giờ',
+                    singer: 'Miu Lê',
+                    path: './music/MinhYeuNhauTuBaoGio.mp3',
+                    img: './img/miule.jpg'  
+                    },
+                    {
+                    name: 'Phía sau một cô gái',
+                    singer: 'Soobin Hoàng Sơn',
+                    path: './music/PhiaSauMotCoGai.mp3',
+                    img: './img/phiasaumotcogai.jpg'  
+                    }
+                ],
+
+                render: function(){
+                    const htmls =  this.songs.map(song => {
+                        return `<div class="item">
+                            <div class="circle">
+                            <img src="${song.img} "/>
+                            </div> <div class="song">
+                            <h3 class="name">${song.name}</h3>
+                            <h4 class="singer"> ${song.singer}</h4>
+                            </div> </div> 
+                            `
+                        })
+                    $('.play-list .list').innerHTML = htmls.join('')
+                },
+                start: function(){
+                    this.render()
+
+                }
+
+            }     //app
+            
+            /* play music*/
+            
+            var isPlaying = false;
+            playBtn.onclick = function(){
+                
+                if(isPlaying == true){
+                    audio.pause();
+                    isPlaying = false;
+                    
+                }
+                else{
+                    isPlaying = true;  
+                    audio.play();       
+                }
+                console.log("isplayng = " + isPlaying)
+            }
+            
+
+            app.start()
+        </script>
+    </body>
+</html>
